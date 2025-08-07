@@ -31,3 +31,8 @@ jobs:
         docker build -t flask-app:latest .
     
     # Optional: Add additional steps to push the Docker image to a registry like Docker Hub
+    - name: Hello world action
+      with: # Set the secret as an input
+        super_secret: ${{ secrets.SuperSecret }}
+      env: # Or as an environment variable
+        super_secret: ${{ secrets.SuperSecret }}
