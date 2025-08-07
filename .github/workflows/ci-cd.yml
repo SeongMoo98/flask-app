@@ -49,4 +49,4 @@ jobs:
         context: .
         file: ./Dockerfile
         push: true
-        tags: syohdev/nodejs-github-action:${{ env.CURRENT_TIME }}
+        tags: seongmoo/nodejs-github-action:${{ env.CURRENT_TIME }}
