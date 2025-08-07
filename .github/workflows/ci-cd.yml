@@ -31,8 +31,18 @@ jobs:
         docker build -t flask-app:latest .
     
     # Optional: Add additional steps to push the Docker image to a registry like Docker Hub
-    - name: Hello world action
-      with: # Set the secret as an input
-        super_secret: ${{ secrets.SuperSecret }}
-      env: # Or as an environment variable
-        super_secret: ${{ secrets.SuperSecret }}
+    # Docker Hub Login
+    - name: Log in to Docker Hub
+      uses: docker/login-action@v1
+      with:
+        username: ${{ secrets.DOCKER_USERNAME }}
+        password: ${{ secrets.DOCKER_PASSWORD }}
+
+    # Docker Imgae build & Push
+    - name: Build and push Docker image
+      uses: docker/build-push-action@v2
+      with:
+        context: .
+        file: ./Dockerfile
+        push: true
+        tags: syohdev/nodejs-github-action:${{ env.CURRENT_TIME }}
